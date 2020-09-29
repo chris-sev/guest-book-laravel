@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/messages', function () {
-    return Message::take(25)->latest()->get();
+    return Message::take(10)->latest()->get();
 });
 
 // create a message from the input
