@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Message;
 
@@ -15,17 +14,13 @@ use App\Models\Message;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
+// get all messages
 Route::get('/messages', function () {
     return Message::take(10)->latest()->get();
 });
 
-// create a message from the input
+// create a message
 Route::post('/messages', function () {
-    $data = request()->only('text');
-    $message = Message::create($data);
+    $message = Message::create(request()->only('text'));
     return $message;
 });
